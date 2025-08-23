@@ -174,80 +174,220 @@
 
 ////////////////////////////////////
 // Strings and Template Literals
-const firstName = "Jonas";
-const job = "teacher";
-const birthYear = 1991;
-const year = 2037;
+// const firstName = "Jonas";
+// const job = "teacher";
+// const birthYear = 1991;
+// const year = 2037;
 
-const jonas =
-  "I'm " + firstName + ", a " + (year - birthYear) + " year old " + job + "!";
-console.log(jonas);
+// const jonas =
+//   "I'm " + firstName + ", a " + (year - birthYear) + " year old " + job + "!";
+// console.log(jonas);
 
-const jonasNew = `I'm ${firstName}, a ${year - birthYear} year old ${job}!`;
-console.log(jonasNew);
+// const jonasNew = `I'm ${firstName}, a ${year - birthYear} year old ${job}!`;
+// console.log(jonasNew);
 
-console.log(`I'm ${2037 - 1991} years old`);
-console.log(`Math works: ${2 + 3} equals five`);
-console.log(`Comparisons too: ${5 > 3}`);
+// console.log(`I'm ${2037 - 1991} years old`);
+// console.log(`Math works: ${2 + 3} equals five`);
+// console.log(`Comparisons too: ${5 > 3}`);
 
-console.log(`Just a regular string...`);
+// console.log(`Just a regular string...`);
+
+// ////////////////////////////////////
+// // Taking Decisions: if / else Statements
+// const age = 15;
+
+// if (age >= 18) {
+//   console.log("Sarah can start driving license 🚗");
+// } else {
+//   const yearsLeft = 18 - age;
+//   console.log(`Sarah is too young. Wait another ${yearsLeft} years :)`);
+// }
+
+// ////////////////////////////////////
+// // Truthy and Falsy Values
+
+// // 5 falsy values: 0, '', undefined, null, NaN
+// console.log(Boolean(0));
+// console.log(Boolean(undefined));
+// console.log(Boolean("Jonas"));
+// console.log(Boolean({}));
+// console.log(Boolean("")); 
+
+// const money = 100;
+// if (money) {
+//   console.log("Don't spend it all ;)");
+// } else {
+//   console.log("You should get a job!");
+// }
+
+// let height = 0;
+// if (height) {
+//   console.log("YAY! Height is defined");
+// } else {
+//   console.log("Height is UNDEFINED");
+// }
+
+// if (height !== undefined) {
+//   console.log("Height is defined");
+// }
+
+// ////////////////////////////////////
+// // Coding Challenge #2
+
+// // Reuse your BMI calculation from Challenge #1
+// const massMark = 78;
+// const heightMark = 1.69;
+// const massJohn = 92;
+// const heightJohn = 1.95;
+
+// const BMIMark = Math.floor(massMark / heightMark ** 2);
+// const BMIJohn = Math.floor(massJohn / (heightJohn * heightJohn));
+// console.log(BMIMark, BMIJohn);
+
+// if (BMIMark > BMIJohn) {
+//   console.log(`Mark's BMI (${BMIMark}) is greater than John's BMI (${BMIJohn}).`);
+// } else if (BMIMark < BMIJohn) {
+//   console.log(`John's BMI (${BMIJohn}) is greater than John's BMI (${BMIJohn}).`);
+// } else {
+//   console.log('Error');
+// }
+
+// const inputYear = "1991";
+// console.log(Number(inputYear), inputYear);
+// console.log(Number(inputYear) + 18);
+
+// console.log(Number("Jonas"));
+// console.log(typeof Nan);
+
+// console.log(String(23), 23);
+// console.log(typeof String(23));
+
+// console.log("I am" + 23 + "years old");
+// console.log("23" - "10" - 3);
+// console.log("23" / "2");
+// console.log("23" * "2");
+
+// let n = "1" + 1;
+// n = n - 1;
+// console.log(n);
 
 ////////////////////////////////////
-// Taking Decisions: if / else Statements
-const age = 15;
+// Type Conversion and Coercion
 
-if (age >= 18) {
-  console.log("Sarah can start driving license 🚗");
-} else {
-  const yearsLeft = 18 - age;
-  console.log(`Sarah is too young. Wait another ${yearsLeft} years :)`);
-}
+// // type conversion (manual)
+// const inputYear = "1991";
+// console.log(Number(inputYear), inputYear);
+// console.log(Number(inputYear) + 18); 
+
+// console.log(Number("Jonas")); 
+// console.log(typeof NaN);
+// console.log(String(23), 23); 
+// console.log(typeof String(23));
+
+// console.log("I am " + 23 + " years old"); 
+// console.log("23" - "10" - 3); 
+// console.log("23" / "2"); 
+// console.log("23" * "2");
+
+// // Predict the output, then test:
+// console.log("5" + 2); // Your guess: 52
+// console.log("5" - 2); // Your guess: 3
+// console.log("5" * 2); // Your guess: 10
+// console.log("5" / 2); // Your guess: 2.5
+
+// const userAge = "25"; 
+// const userScore = 95; 
+
+// console.log(Number(userAge));
+// console.log(String(userScore));
+
+// // const num1 = prompt("First number:"); 
+// // const num2 = prompt("Second number:"); 
+// // const sum = Number(num1) + Number(num2);
+// // console.log(`Sum: ${sum}`);
+
+// ////////////////////////////////////
+// // Equality Operators: == vs. ===
+
+// const age = "18";
+// if (age === 18) console.log("You just became an adult :D (strict)");
+// if (age == 18) console.log("You just became an adult :D (loose)");
+
+// console.log("18" === 18); 
+// console.log("18" == 18);
+// console.log(18 === 18);
+
+// ////////////////////////////////////
+// // Logical Operators
+
+// const hasDriversLicense = true;
+// const hasGoodVision = true;
+
+// console.log(hasDriversLicense && hasGoodVision);
+// console.log(hasDriversLicense || hasGoodVision);
+// console.log(!hasDriversLicense);
+
+// Exercise 1: Club Entry System
+
+// const age = 19;
+// const hasID = true;
+// const isVIP = false;
+
+// if (age >= 21 && hasID || isVIP) {
+//   console.log("Welcome to the club. You may now enter.");
+// } else {
+//   console.log("You are not allowed to enter the club.")
+// }
+
+// // Exercise 2: Weather Advisor
+// const temperature = 25;
+// const isRaining = false;
+// const isWindy = true;
+
+// if ((temperature >= 20 && temperature <= 30) && !isRaining && !isWindy) {
+//   console.log("It's a perfect day to go out!");
+// } else if ((temperature >= 15 && temperature <= 35) && !isRaining) {
+//   console.log("It is a good day.");
+// } else {
+//   console.log("Stay inside.");
+// }
 
 ////////////////////////////////////
-// Truthy and Falsy Values
+// The Conditional (Ternary) Operator
 
-// 5 falsy values: 0, '', undefined, null, NaN
-console.log(Boolean(0));
-console.log(Boolean(undefined));
-console.log(Boolean("Jonas"));
-console.log(Boolean({}));
-console.log(Boolean("")); 
+const age = 23;
 
-const money = 100;
-if (money) {
-  console.log("Don't spend it all ;)");
-} else {
-  console.log("You should get a job!");
-}
+const drink = age >= 18 ? "wine" : "water";
+console.log(drink);
 
-let height = 0;
-if (height) {
-  console.log("YAY! Height is defined");
-} else {
-  console.log("Height is UNDEFINED");
-}
+console.log(`I like to drink ${age >= 18 ? "wine 🍷" : "water 💧"}`);
 
-if (height !== undefined) {
-  console.log("Height is defined");
-}
+// 1. Login status
+
+const isLoggedIn = true;
+let welcomeMessage = isLoggedIn ? "Welcome back!" : "Please Sign In";
+
+console.log(welcomeMessage);
+
+// 2. Price with discount
+const isPremium = false;
+let price = isPremium ?  100 * 0.8 : 100;
+console.log(price);
+
+// Exercise 2: Smart Responses
+
+const score = 85;
+const weather = "sunny";
+const battery = 15;
+
+console.log(`Your score:  ${score} (${score >= 75 ? "Passed" : "Failed"})`);
+console.log(`Weather is ${weather} (${weather === "sunny" ? "Great for outdoor activities" : "Stay inside"})`);
+console.log(`Battery: ${battery}% (${battery <= 20 ? "Low battery warning" : "Battery OK"})`);
 
 ////////////////////////////////////
-// Coding Challenge #2
+// Coding Challenge #4
 
-// Reuse your BMI calculation from Challenge #1
-const massMark = 78;
-const heightMark = 1.69;
-const massJohn = 92;
-const heightJohn = 1.95;
-
-const BMIMark = Math.floor(massMark / heightMark ** 2);
-const BMIJohn = Math.floor(massJohn / (heightJohn * heightJohn));
-console.log(BMIMark, BMIJohn);
-
-if (BMIMark > BMIJohn) {
-  console.log(`Mark's BMI (${BMIMark}) is greater than John's BMI (${BMIJohn}).`);
-} else if (BMIMark < BMIJohn) {
-  console.log(`John's BMI (${BMIJohn}) is greater than John's BMI (${BMIJohn}).`);
-} else {
-  console.log('Error');
-}
+const bill = 275;
+const tip = bill >= 50 &&  bill <= 300 ? bill * 0.15 : bill * 0.20;
+const totalBill = bill + tip; 
+console.log(`The bill was ${bill}, the tip was ${tip}, and the total value is ${totalBill}.`)
