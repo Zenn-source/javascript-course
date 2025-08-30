@@ -231,59 +231,242 @@
 
 // Coding Challenge #2: Student Grade Manager
 
-const grades = [78, 85, 92, 67, 88, 95, 73, 82];
+// const grades = [78, 85, 92, 67, 88, 95, 73, 82];
 
-// Function to calculate average
-function calculateAverage(grades) {
-  let sum = 0;
-  for (let i = 0; i < grades.length; i++) {
-    sum += grades[i];
-  }
-  return sum / grades.length;
-}
+// // Function to calculate average
+// function calculateAverage(grades) {
+//   let sum = 0;
+//   for (let i = 0; i < grades.length; i++) {
+//     sum += grades[i];
+//   }
+//   return sum / grades.length;
+// }
 
-// Function to find highest grade
-function findHighestGrade(grades) {
-  let highest = grades[0];
-  for (let i = 0; i < grades.length; i++) {
-    if (grades[i] > highest) {
-      highest = grades[i];
-    }
-  }
-  return highest;
-}
 
-// Function to find lowest grade
-function findLowestGrade(grades) {
-  let lowest = grades[0];
-  for (let i = 0; i < grades.length; i++) {
-    if (grades[i] < lowest) {
-      lowest = grades[i];
-    }
-  }
-  return lowest;
-}
+// function findHighestGrade(grades) {
+//   let highest = grades[0];
+//   for (let i = 0; i < grades.length; i++) {
+//     if (grades[i] > highest) {
+//       highest = grades[i];
+//     }
+//   }
+//   return highest;
+// }
 
-// Function to count passing students
-function countPassing(grades, passingGrade) {
-  let count = 0;
-  for (let i = 0; i < grades.length; i++) {
-    if (grades[i] >= passingGrade) {
-      count++;
-    }
-  }
-  return count;
-}
+// function findLowestGrade(grades) {
+//   let lowest = grades[0];
+//   for (let i = 0; i < grades.length; i++) {
+//     if (grades[i] < lowest) {
+//       lowest = grades[i];
+//     }
+//   }
+//   return lowest;
+// }
 
-// Generate complete report
-const average = calculateAverage(grades);
-const highest = findHighestGrade(grades);
-const lowest = findLowestGrade(grades);
-const passing = countPassing(grades, 70);
+// function countPassing(grades, passingGrade) {
+//   let count = 0;
+//   for (let i = 0; i < grades.length; i++) {
+//     if (grades[i] >= passingGrade) {
+//       count++;
+//     }
+//   }
+//   return count;
+// }
 
-console.log("=== GRADE REPORT ===");
-console.log(`Average: ${average.toFixed(2)}`);
-console.log(`Highest: ${highest}`);
-console.log(`Lowest: ${lowest}`);
-console.log(`Passing students: ${passing} out of ${grades.length}`);
+// const average = calculateAverage(grades);
+// const highest = findHighestGrade(grades);
+// const lowest = findLowestGrade(grades);
+// const passing = countPassing(grades, 70);
 
+// console.log("=== GRADE REPORT ===");
+// console.log(`Average: ${average.toFixed(2)}`);
+// console.log(`Highest: ${highest}`);
+// console.log(`Lowest: ${lowest}`);
+// console.log(`Passing students: ${passing} out of ${grades.length}`);
+
+////////////////////////////////////
+// The Array Problem
+// const jonasArray = [
+//   "Jonas",
+//   "Schmedtmann",
+//   2037 - 1991,
+//   "teacher",
+//   ["Michael", "Peter", "Steven"],
+// ];
+
+// console.log(jonasArray[0]); // What is this? firstName?
+// console.log(jonasArray[1]); // lastName?
+// console.log(jonasArray[2]);
+
+// const jonas = {
+//   firstName: "Jonas",
+//   lastName: "Schmedtmann",
+//   age: 46,
+//   job: "teacher",
+//   friends: ["Michael", "Peter", "Steven"],
+// };
+
+// console.log(jonas.firstName);
+// console.log(jonas.lastName);
+// console.log(jonas.age);
+// console.log(jonas.job); 
+// console.log(jonas.friends); 
+
+// console.log(jonas["firstName"]); 
+// console.log(jonas["lastName"]);
+// console.log(jonas["age"]);
+
+// const nameKey = "Name";
+// console.log(jonas["first" + nameKey]);
+// console.log(jonas["last" + nameKey]);
+
+// jonas.job = "programmer";
+// jonas["age"] = 35;
+// console.log(jonas);
+// jonas.location = "Portugal";
+// jonas["twitter"] = "@jonasschmedtman";
+// jonas.hasDriversLicense = true;
+// console.log(jonas);
+
+// // Use arrays for ordered, indexed data - think lists
+// const listOfYears = [1991, 1984, 2008, 2020];
+// const shoppingList = ["apples", "bananas", "milk", "bread"];
+// const testScores = [85, 92, 78, 96];
+
+// // Use Objects for named, descriptive data - think entities
+// const person = {
+//   name: "Jonas",
+//   age: 46,
+//   occupation: "teacher",
+// };
+
+// const car = {
+//   brand: "Toyota",
+//   model: "Camry",
+//   year: 2020,
+//   color: "blue",
+// };
+
+// const student = {
+//   name: "Sarah",
+//   grades: [85, 92, 78],
+//   address: {
+//     street: "123 Main St",
+//     city: "New York",
+//   },
+// };
+
+// console.log(student.grades[0]);
+// console.log(student.address.city);
+
+////////////////////////////////////
+// Object Methods
+
+// const jonas = {
+//   firstName: "Jonas",
+//   lastName: "Schmedtmann",
+//   birthYear: 1991,
+//   job: "teacher",
+//   friends: ["Michael", "Peter", "Steven"],
+//   hasDriversLicense: true,
+//   calcAge: function (birthYear) {
+//     return 2037 - birthYear;
+//   },
+// };
+
+// console.log(jonas.calcAge(1991)); 
+// console.log(jonas.calcAge(jonas.birthYear)); 
+
+// const jonasImproved = {
+//   firstName: "Jonas",
+//   lastName: "Schmedtmann",
+//   birthYear: 1991,
+//   job: "teacher",
+//   friends: ["Michael", "Peter", "Steven"],
+//   hasDriversLicense: true,
+
+//   calcAge: function () {
+//     console.log(this);
+//     return 2037 - this.birthYear;
+//   },
+// };
+
+// console.log(jonasImproved.calcAge());
+
+// const jonasAdvanced = {
+//   firstName: "Jonas",
+//   lastName: "Schmedtmann",
+//   birthYear: 1991,
+//   job: "teacher",
+//   friends: ["Michael", "Peter", "Steven"],
+//   hasDriversLicense: true,
+
+//   calcAge: function () {
+//     this.age = 2037 - this.birthYear;
+//     return this.age;
+//   },
+
+//   getSummary: function () {
+//     return `${this.firstName} is a ${this.calcAge()}-year old ${
+//       this.job
+//     }, and he has ${this.hasDriversLicense ? "a" : "no"} driver's license.`;
+//   },
+// };
+
+// console.log(jonasAdvanced.calcAge());
+// console.log(jonasAdvanced.age);
+// console.log(jonasAdvanced.getSummary());
+
+////////////////////////////////////
+// Coding Challenge #3 - User Profile System
+
+const user = {
+  firstName: "Mackenzie",
+  lastName: "Iguiron",
+  birthYear: 2005,
+  location: "New York",
+  interests: ["gaming", "music", "coding"],
+  friends: [
+    { name: "Michael", status: "active" },
+    { name: "Emma", status: "inactive" },
+    { name: "David", status: "active" },
+  ],
+  isActive: true,
+
+  calcAge: function () {
+    const currentYear = new Date().getFullYear();
+    this.age = currentYear - this.birthYear;
+    return this.age;
+  },
+
+  addFriend: function (name, status = "active") {
+    this.friends.push({ name, status });
+    return this.friends.length;
+  },
+
+  getActiveFriends: function () {
+    return this.friends.filter(friend => friend.status === "active").length;
+  },
+
+  toggleStatus: function () {
+    this.isActive = !this.isActive;
+    return this.isActive;
+  },
+
+  getSummary: function () {
+    this.calcAge();
+    return `
+    ${this.firstName} ${this.lastName}, ${this.age} years old
+    Location: ${this.location}
+    Status: ${this.isActive ? "Online" : "Offline"}
+    Friends: ${this.friends.length} total, ${this.getActiveFriends()} active
+    Interests: ${this.interests.join(", ")}
+    `;
+  },
+};
+
+console.log(user.getSummary());
+user.addFriend("Alex", "active");
+user.toggleStatus();
+console.log(`\nAfter updates:`);
+console.log(user.getSummary());
