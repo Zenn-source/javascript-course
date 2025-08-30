@@ -420,53 +420,206 @@
 ////////////////////////////////////
 // Coding Challenge #3 - User Profile System
 
-const user = {
-  firstName: "Mackenzie",
-  lastName: "Iguiron",
-  birthYear: 2005,
-  location: "New York",
-  interests: ["gaming", "music", "coding"],
-  friends: [
-    { name: "Michael", status: "active" },
-    { name: "Emma", status: "inactive" },
-    { name: "David", status: "active" },
-  ],
-  isActive: true,
+// const user = {
+//   firstName: "Mackenzie",
+//   lastName: "Iguiron",
+//   birthYear: 2005,
+//   location: "New York",
+//   interests: ["gaming", "music", "coding"],
+//   friends: [
+//     { name: "Michael", status: "active" },
+//     { name: "Emma", status: "inactive" },
+//     { name: "David", status: "active" },
+//   ],
+//   isActive: true,
 
-  calcAge: function () {
-    const currentYear = new Date().getFullYear();
-    this.age = currentYear - this.birthYear;
-    return this.age;
+//   calcAge: function () {
+//     const currentYear = new Date().getFullYear();
+//     this.age = currentYear - this.birthYear;
+//     return this.age;
+//   },
+
+//   addFriend: function (name, status = "active") {
+//     this.friends.push({ name, status });
+//     return this.friends.length;
+//   },
+
+//   getActiveFriends: function () {
+//     return this.friends.filter(friend => friend.status === "active").length;
+//   },
+
+//   toggleStatus: function () {
+//     this.isActive = !this.isActive;
+//     return this.isActive;
+//   },
+
+//   getSummary: function () {
+//     this.calcAge();
+//     return `
+//     ${this.firstName} ${this.lastName}, ${this.age} years old
+//     Location: ${this.location}
+//     Status: ${this.isActive ? "Online" : "Offline"}
+//     Friends: ${this.friends.length} total, ${this.getActiveFriends()} active
+//     Interests: ${this.interests.join(", ")}
+//     `;
+//   },
+// };
+
+// console.log(user.getSummary());
+// user.addFriend("Alex", "active");
+// user.toggleStatus();
+// console.log(`\nAfter updates:`);
+// console.log(user.getSummary());
+
+////////////////////////////////////
+// Selecting DOM Elements
+
+// querySelector - works with any CSS selector
+// const message = document.querySelector(".message");
+// const button = document.querySelector("#btn");
+// const heading = document.querySelector("h1");
+// const input = document.querySelector(".guess");
+
+// console.log(message);
+// console.log(button);
+// console.log(heading);
+
+// const buttonById = document.getElementById("btn");
+// console.log(buttonById);
+// console.log(buttonById === button);
+
+// const allParagraphs = document.querySelectorAll("p");
+// console.log(allParagraphs);
+// console.log(allParagraphs[0]); 
+// console.log(allParagraphs.length);
+
+////////////////////////////////////
+// Modifying Element Content
+
+// const message = document.querySelector(".message");
+
+// console.log(message.textContent);
+// message.textContent = "Hello from JavaScript!";
+
+// message.innerHTML = "<strong>Bold text from JS!</strong>";
+
+// console.log(message.innerText);
+
+// const input = document.querySelector(".guess");
+
+// console.log(input.value);
+// input.value = "Default text";
+// input.placeholder = "Type here";
+
+// const heading = document.querySelector("h1");
+
+// heading.style.color = "red";
+// heading.style.backgroundColor = "yellow";
+// heading.style.fontSize = "3rem";
+// heading.style.padding = "20px";
+// heading.style.borderRadius = "10px";
+
+////////////////////////////////////
+// Event Listeners - User Interaction
+
+// const button = document.querySelector("#btn");
+// const message = document.querySelector(".message");
+
+// button.addEventListener("click", function () {
+//   console.log("Button was clicked!");
+//   message.textContent = "You clicked the button!";
+//   message.style.color = "green";
+// });
+
+// let clickCount = 0;
+
+// button.addEventListener("click", function () {
+//   clickCount++;
+//   button.textContent = `Clicked ${clickCount} times`;
+//   button.style.backgroundColor = `hsl(${clickCount * 30}, 70%, 50%)`;
+// });
+
+// const input = document.querySelector(".guess");
+
+// input.addEventListener("input", function () {
+//   const userText = input.value;
+//   message.textContent = `You typed: ${userText}`;
+//   message.style.fontSize = `${userText.length + 10}px`;
+// });
+
+// input.addEventListener("keydown", function (event) {
+//   console.log(`Key pressed: ${event.key}`);
+
+//   if (event.key === "Enter") {
+//     message.textContent = `You pressed Enter! Text was: ${input.value}`;
+//     input.value = "";
+//   }
+// });
+
+// document.addEventListener("keydown", function (event) {
+//   if (event.key === "Escape") {
+//     message.textContent = "Reset with Escape key!";
+//     input.value = "";
+//     clickCount = 0;
+//     button.textContent = "Click Me!";
+//   }
+// });
+
+// Game State Object
+const gameState = {
+  scores: [0, 0],
+  winningScore: 5,
+  isGameOver: false,
+
+  addPoint: function (playerIndex) {
+    if (!this.isGameOver) {
+      this.scores[playerIndex]++;
+      this.updateScoreDisplay(playerIndex);
+
+      if (this.scores[playerIndex] >= this.winningScore) {
+        this.showWinner(playerIndex);
+      }
+    }
   },
 
-  addFriend: function (name, status = "active") {
-    this.friends.push({ name, status });
-    return this.friends.length;
+  updateScoreDisplay: function (playerIndex) {
+    document.querySelector(`#score-${playerIndex + 1}`).textContent =
+      this.scores[playerIndex];
   },
 
-  getActiveFriends: function () {
-    return this.friends.filter(friend => friend.status === "active").length;
+
+  showWinner: function (playerIndex) {
+    this.isGameOver = true;
+    const winnerName = `Player ${playerIndex + 1}`;
+    document.querySelector(".winner-name").textContent = winnerName;
+
+    document.querySelector(".winner").classList.remove("hidden");
+    document.querySelector(".status").classList.add("hidden");
   },
 
-  toggleStatus: function () {
-    this.isActive = !this.isActive;
-    return this.isActive;
-  },
+  resetGame: function () {
+    this.scores = [0, 0];
+    this.isGameOver = false;
 
-  getSummary: function () {
-    this.calcAge();
-    return `
-    ${this.firstName} ${this.lastName}, ${this.age} years old
-    Location: ${this.location}
-    Status: ${this.isActive ? "Online" : "Offline"}
-    Friends: ${this.friends.length} total, ${this.getActiveFriends()} active
-    Interests: ${this.interests.join(", ")}
-    `;
+    document.querySelectorAll(".score").forEach((el) => (el.textContent = 0));
+    document.querySelector(".winner").classList.add("hidden");
+    document.querySelector(".status").classList.remove("hidden");
   },
 };
 
-console.log(user.getSummary());
-user.addFriend("Alex", "active");
-user.toggleStatus();
-console.log(`\nAfter updates:`);
-console.log(user.getSummary());
+document.querySelectorAll(".btn-add").forEach((btn) => {
+  btn.addEventListener("click", function () {
+    const playerIndex = this.dataset.player - 1;
+    gameState.addPoint(playerIndex);
+  });
+});
+
+document.querySelector("#btn-reset").addEventListener("click", function () {
+  gameState.resetGame();
+});
+
+document.querySelector("#winning-score").addEventListener("change", function () {
+  gameState.winningScore = parseInt(this.value);
+  document.querySelector(".target").textContent = this.value;
+  gameState.resetGame();
+});
