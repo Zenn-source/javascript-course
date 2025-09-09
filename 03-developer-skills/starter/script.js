@@ -210,3 +210,125 @@ FRAMEWORK SUCCESS ANALYSIS:
 */
 
 console.log("🎯 Framework mastered - ready for independent problem solving!");
+
+console.log('=== HOUR 3: RESEARCH & DEBUGGING MASTERY ===');
+
+console.log(
+  'Goal: Master research and debugging like a professional developer'
+);
+console.log(
+  'Strategic research builds lasting knowledge, not just quick fixes'
+);
+
+////////////////////////////////////
+// STACK OVERFLOW RESEARCH RESULTS
+
+function reverseStringMethods(str) {
+  const method1 = str.split("").reverse().join("");
+
+  let method2 = "";
+  for (let i = str.length - 1; i >= 0; i--) {
+    method2 += str[i];
+  }
+
+  const method3 = [...str].reverse().join("");
+
+  return { method1, method2, method3 };
+}
+
+// Test our Stack Overflow research results
+const reverseResults = reverseStringMethods("hello");
+console.log("Stack Overflow research results:", reverseResults);
+
+////////////////////////////////////
+// MDN DOCUMENTATION MASTERY
+
+function demonstrateConcat() {
+  const array1 = [1, 2, 3];
+  const array2 = [4, 5, 6];
+  const array3 = [7, 8, 9];
+
+  const simple = array1.concat(array2);
+  const multiple = array1.concat(array2, array3);
+
+  // Verify concat doesn't modify original arrays
+  console.log('Original array1 unchanged:', array1);
+
+  return { simple, multiple };
+}
+
+const concatResults = demonstrateConcat();
+console.log('MDN documentation applied:', concatResults);
+
+////////////////////////////////////
+// BROWSER DEVELOPER TOOLS MASTERY
+
+function demonstrateConsoleDebugging(data) {
+  console.group("Debugging Session");
+
+  console.log("Input data:", data);
+
+  if (typeof data !== "object") {
+    console.warn("Warning: Expected object, got", typeof data);
+  }
+
+  console.table(data);
+  console.groupEnd();
+
+  return Array.isArray(data) ? data.length : Object.keys(data).length;
+}
+
+const arrayData = [1, 2, 3, 4, 5];
+const objectData = { name: "John", age: 30, city: "New York" };
+
+demonstrateConsoleDebugging(arrayData);
+demonstrateConsoleDebugging(objectData);
+
+////////////////////////////////////
+// DEBUGGER STATEMENT AND BREAKPOINTS
+
+function stepThroughDebugging(numbers) {
+  debugger;
+
+  let sum = 0;
+  let count = 0;
+
+  for (let i = 0; i < numbers.length; i++) {
+    const currentNumber = numbers[i];
+
+    console.log(`Processing index ${i}: value = ${currentNumber}`);
+
+    if (typeof currentNumber === "number") {
+      sum += currentNumber;
+      count++;
+    } else {
+      console.error(`Invalid number at index ${i}:`, currentNumber);
+    }
+  }
+
+  const average = count > 0 ? sum / count : 0;
+  console.log("Final results:", { sum, count, average });
+
+  return average;
+}
+
+const mixedNumbers = [10, 20, "error", 30, null, 40];
+const debugResult = stepThroughDebugging(mixedNumbers);
+console.log("Debug session result:", debugResult);
+
+function calculateAverageScoreFixed(scores) {
+  if (!Array.isArray(scores)) {
+    return 'Error: Input must be an array';
+  }
+
+  const validScores = scores.filter(
+    score => typeof score === 'number' && !isNaN(score)
+  );
+
+  if (validScores.length === 0) {
+    return 'Error: No valid scores to calculate average';
+  }
+  
+  const sum = validScores.reduce((a, b) => a + b, 0);
+  return sum / validScores.length;
+}
