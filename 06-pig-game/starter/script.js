@@ -31,7 +31,6 @@ btnRoll.addEventListener('click', function () {
     const dice = Math.trunc(Math.random() * 6) + 1;
     diceEl.classList.remove('hidden');
     diceEl.src = `dice-${dice}.png`;
-    // We'll add the dice logic here
     if (dice !== 1) {
       currentScore += dice;
       document.getElementById(`current--${activePlayer}`).textContent =
@@ -39,15 +38,28 @@ btnRoll.addEventListener('click', function () {
     } else {
       currentScore = 0;
       document.getElementById(`current--${activePlayer}`).textContent = 0;
-      // Handle rolling a 1
+      switchPlayer();
     }
   }
 });
 
-btnRoll.addEventListener('click', function () {
-  if (playing) {
-    const dice = Math.trunc(Math.random() * 6) + 1;
-    // More logic coming...
+const switchPlayer = function () {
+  document.getElementById(`current--${activePlayer}`).textContent = 0;
+  currentScore = 0;
+  activePlayer = activePlayer === 0 ? 1 : 0;
+
+  player0El.classList.toggle('player--active');
+  player1El.classList.toggle('player--active');
+};
+
+const btnHold = document.querySelector('.btn--hold');
+
+btnHold.addEventListener('click', function () {
+  if (playing && currentScore > 0) {
+    scores[activePlayer] += currentScore;
+    
+    document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
+    switchPlayer();
   }
 });
 
@@ -55,3 +67,5 @@ console.log('Scores:', scores);
 console.log('Current Score:', currentScore);
 console.log('Active Player:', activePlayer);
 console.log('Playing:', playing);
+console.log('Player 0 active:', player0El.classList.contains('player--active'));
+console.log('Player 1 active:', player1El.classList.contains('player--active'));
