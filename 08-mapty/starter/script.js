@@ -112,9 +112,17 @@ class App {
 
   constructor() {
     this._getPosition();
+    this._getLocalStorage();
 
     form.addEventListener('submit', this._newWorkout.bind(this));
     inputType.addEventListener('change', this._toggleElevationField);
+    containerWorkouts.addEventListener('click', this._moveToPopup.bind(this));
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && !form.classList.contains('hidden')) {
+        this._hideForm();
+      }
+    });
   }
 
   _getPosition() {
@@ -175,6 +183,8 @@ class App {
     this.#map.on('click', this._showForm.bind(this));
 
     console.log('🗺️ Default map loaded successfully');
+
+    this.#workouts.forEach(work => this._renderWorkoutMarker(work));
   }
 
   _loadMap(position) {
@@ -194,6 +204,22 @@ class App {
     this.#map.on('click', this._showForm.bind(this));
 
     console.log('🗺️ Map loaded successfully at user location');
+
+    this.#workouts.forEach(work => this._renderWorkoutMarker(work));
+  }
+
+  _moveToPopup(e) {
+    const workoutEl = e.target.closest('.workout');
+    if (!workoutEl) return;
+
+    const workout = this.#workouts.find(
+      work => work.id === workoutEl.dataset.id
+    );
+
+    this.#map.setView(workout.coords, this.#mapZoomLevel, {
+      animate: true,
+      pan: { duration: 1 },
+    });
   }
 
   _showForm(mapE) {
@@ -253,9 +279,12 @@ class App {
     }
 
     this.#workouts.push(workout);
+
     this._renderWorkoutMarker(workout);
     this._renderWorkout(workout);
     this._hideForm();
+
+    this._setLocalStorage();
   }
 
   _renderWorkoutMarker(workout) {
@@ -325,6 +354,41 @@ class App {
     `;
 
     form.insertAdjacentHTML('afterend', html);
+  }
+
+  _setLocalStorage() {
+    localStorage.setItem('workouts', JSON.stringify(this.#workouts));
+  }
+
+  _getLocalStorage() {
+    const data = localStorage.getItem('workouts');
+    if (!data) return;
+
+    const parsed = JSON.parse(data);
+
+    this.#workouts = parsed.map(work => {
+      if (work.type === 'running')
+        return new Running(
+          work.coords,
+          work.distance,
+          work.duration,
+          work.cadence
+        );
+      if (work.type === 'cycling')
+        return new Cycling(
+          work.coords,
+          work.distance,
+          work.duration,
+          work.elevationGain
+        );
+    });
+
+    this.#workouts.forEach(work => this._renderWorkout(work));
+  }
+
+  reset() {
+    localStorage.removeItem('workouts');
+    location.reload();
   }
 }
 
