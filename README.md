@@ -54,6 +54,30 @@ javascript-course/
 │       ├── script.js
 │       └── README.md
 │
+├── 05-modal/          📚 Session 4: Advanced Concepts
+│   └── starter/
+│       ├── index.html
+│       ├── script.js
+│       └── README.md
+│
+├── 06-pig-game/          📚 Session 4: Advanced Concepts
+│   └── starter/
+│       ├── index.html
+│       ├── script.js
+│       └── README.md
+│ 
+├── 07-behind-the-scenes/          📚 Session 4: Advanced Concepts
+│   └── starter/
+│       ├── index.html
+│       ├── script.js
+│       └── README.md
+│ 
+├── 08-mapty/          📚 Session 4: Advanced Concepts
+│   └── starter/
+│       ├── index.html
+│       ├── script.js
+│       └── README.md
+│ 
 ├── README.md                        📖 This file - course overview
 └── .gitignore                       🚫 Git ignore file
 ```
